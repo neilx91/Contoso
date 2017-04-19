@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Contoso.Model
 {
     [Table("Student")]
-
     public class Student : Person
     {
         public Student()
@@ -17,6 +16,6 @@ namespace Contoso.Model
         }
 
         public DateTime EnrollmentDate { get; set; }
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
