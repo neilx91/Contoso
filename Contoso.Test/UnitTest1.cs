@@ -10,5 +10,11 @@ namespace Contoso.Test
         public void TestMethod1()
         {
         }
+
+        [TestMethod]
+        public void TestEmployeeController()
+        {
+            
+        }
     }
 }
