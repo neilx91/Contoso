@@ -56,5 +56,7 @@ namespace InterviewQuestionBank.Data
 
             return base.SaveChanges();
         }
+
+        public System.Data.Entity.DbSet<Contoso.Model.Student> Students { get; set; }
     }
 }
