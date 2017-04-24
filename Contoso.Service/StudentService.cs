@@ -31,9 +31,9 @@ namespace Contoso.Service
             return _studentRepository.GetById(id);
         }
 
-        public Student GetStudentByLastName(string name)
+        public IEnumerable<Student> GetStudentByName(string name)
         {
-            return _studentRepository.GetStudentByLastName(name);
+            return _studentRepository.GetMany(s => s.LastName.Contains(name) || s.FirstName.Contains(name)).ToList();
         }
 
         public Student GetStudentByCode(string employeeCode)
@@ -56,7 +56,7 @@ namespace Contoso.Service
     {
         IEnumerable<Student> GetAllStudents(int? page, int pageSize, out int totalCount);
         Student GetStudentById(int id);
-        Student GetStudentByLastName(string name);
+        IEnumerable<Student> GetStudentByName(string name);
         Student GetStudentByCode(string employeeCode);
         void CreateStudent(Student student);
         void UpdateStudent(Student student);

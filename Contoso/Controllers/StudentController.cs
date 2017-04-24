@@ -27,14 +27,7 @@ namespace Contoso.Controllers
             var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
             var studentsAsIPagedList = new StaticPagedList<Student>(students, pageNumber + 1, PageSize, totalCount);
 
-            var sample = new List<string>();
-            sample.InsertRange(collection:new List<string>(),index:0 );
-            sample.InsertRange(index:0, collection:new List<string>());
-
             return View(studentsAsIPagedList);
-
-
-
         }
 
         // GET: Student/Details/5
