@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Web.Http;
 using Contoso.Model;
 using Contoso.Service;
@@ -13,6 +15,7 @@ namespace Contoso.API.Controllers
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
+
         public StudentController(IStudentService studentService)
         {
             _studentService = studentService;
@@ -20,13 +23,17 @@ namespace Contoso.API.Controllers
 
         // GET: api/Student
         [Route("All/{page:int}")]
-        public IEnumerable<Student> GetAllStudents(int? page)
+        public HttpResponseMessage GetAllStudents(int? page)
         {
             int pageNumber = (page ?? 1) - 1;
             int totalCount = 0;
             int PageSize = 10;
             var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
-            return students;
+
+            var enumerable = students as IList<Student> ?? students.ToList();
+            var response = enumerable.Any() ? Request.CreateResponse(HttpStatusCode.OK, enumerable) : Request.CreateResponse(HttpStatusCode.NotFound, "No Students Found");
+
+            return response;
         }
 
         [Route("name/{name}")]
@@ -43,12 +50,12 @@ namespace Contoso.API.Controllers
         }
 
         // POST: api/Student
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT: api/Student/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
