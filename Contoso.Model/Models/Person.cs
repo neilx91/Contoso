@@ -63,7 +63,7 @@ namespace Contoso.Model
         [MaxLength(150)]
         public string Email { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "Phone Number")]
         [MaxLength(150)]
         public string Phone { get; set; }
 
@@ -86,5 +86,13 @@ namespace Contoso.Model
         [DisplayName("Zip Code")]
         [MaxLength(20)]
         public string ZipCode { get; set; }
+
+        [DisplayName("Password")]
+        [MaxLength(20)]
+        [MinLength(8)]
+        public string Password { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string Salt { get; set; }
     }
 }

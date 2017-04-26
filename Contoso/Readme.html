@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    
+<p>
+    Customize EF Pluralization Before talking about the ability to customize EF pluralization, I want to be sure you understand its default behavior. EF uses its internal pluralization service for three tasks:
+
+    In Database First, it ensures that entities have a singularized name. So if your database table is named People, it will become Person in the model.
+    In the EF Designer for Database or Model First, it creates pluralized EntitySet names (the basis of DbSets) based on the Entity name. For example, the service will be sure that the EntitySet name for the Person entity is People. It doesn’t just use the table name if you created the model using Database First.
+    In Code First, where you explicitly name the DbSets, EF uses the service to infer table names. If you’re starting with a class named Person, convention will assume that your database table is named People.
+    The service doesn’t work like spelling dictionaries, where you can provide a textual list of custom spellings. Instead it uses internal rules. Aside from the occasional anomaly (I had fun with the entity name Rhinoceros early on), the biggest problem with the service is that the rules are based on English.
+
+
+</p>
+
+</body>
+</html>
