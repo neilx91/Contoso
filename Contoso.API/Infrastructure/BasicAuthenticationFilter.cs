@@ -10,6 +10,17 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
+
+/*
+ *      The implementation of the filter is pretty straight forward and handled in a few distinct steps:
+
+        Parsing credentials into a BasicAuthenticationIdentity if available
+        If no credentials were found Challenge for Authorization (401 Response)
+        If credentials were found authorize the user based on the credentials
+        Set the ThreadPrinicipal (or HttpContext.User) if credentials are valid
+
+ */
+
 namespace Contoso.API.Infrastructure
 {
     /// <summary>
@@ -30,7 +41,8 @@ namespace Contoso.API.Infrastructure
         bool Active = true;
 
         public BasicAuthenticationFilter()
-        { }
+        {
+        }
 
         /// <summary>
         /// Overridden constructor to allow explicit disabling of this
@@ -91,9 +103,14 @@ namespace Contoso.API.Infrastructure
         protected virtual bool OnAuthorizeUser(string username, string password, HttpActionContext actionContext)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
                 return false;
-
-            return true;
+            }
+            if (username == "test" && password == "test")
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -131,6 +148,5 @@ namespace Contoso.API.Infrastructure
             actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             actionContext.Response.Headers.Add("WWW-Authenticate", string.Format("Basic realm=\"{0}\"", host));
         }
-
     }
 }

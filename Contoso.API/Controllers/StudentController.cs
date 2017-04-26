@@ -6,12 +6,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
+using Contoso.API.Infrastructure;
 using Contoso.Model;
 using Contoso.Service;
 
 namespace Contoso.API.Controllers
 {
     [RoutePrefix("api/Students")]
+    [BasicAuthenticationFilter]
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
@@ -31,7 +33,9 @@ namespace Contoso.API.Controllers
             var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
 
             var enumerable = students as IList<Student> ?? students.ToList();
-            var response = enumerable.Any() ? Request.CreateResponse(HttpStatusCode.OK, enumerable) : Request.CreateResponse(HttpStatusCode.NotFound, "No Students Found");
+            var response = enumerable.Any()
+                ? Request.CreateResponse(HttpStatusCode.OK, enumerable)
+                : Request.CreateResponse(HttpStatusCode.NotFound, "No Students Found");
 
             return response;
         }
