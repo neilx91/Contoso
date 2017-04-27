@@ -61,6 +61,7 @@ namespace Contoso.Model
 
         [Display(Name = "Email")]
         [MaxLength(150)]
+        [Required]
         public string Email { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -90,6 +91,7 @@ namespace Contoso.Model
         [DisplayName("Password")]
         [MaxLength(20)]
         [MinLength(8)]
+        [Required]
         public string Password { get; set; }
 
         [ScaffoldColumn(false)]
