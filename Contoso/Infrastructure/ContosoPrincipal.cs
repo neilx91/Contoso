@@ -21,7 +21,7 @@ namespace Contoso.Infrastructure
 
         public IIdentity Identity { get; private set; }
         public string UserName { get; private set; }
-        public int UserId { get; set; }
+        public int PersonId { get; set; }
         public string[] Roles { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
