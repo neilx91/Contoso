@@ -7,6 +7,8 @@ using Contoso.Infrastructure;
 
 namespace Contoso.Controllers
 {
+    // Create a base controller for accessing your User data in your all controller. Inherit, your all controller
+    // from this base controller to access user information from the UserContext
     public class BaseController : Controller
     {
         // GET: BaseController

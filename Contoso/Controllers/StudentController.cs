@@ -9,7 +9,7 @@ using PagedList;
 
 namespace Contoso.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         private readonly IStudentService _studentService;
 

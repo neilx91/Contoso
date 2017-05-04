@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Contoso.Controllers
 {
-    public class InstructorController : Controller
+    public class InstructorController : BaseController
     {
         // GET: Instructor
         public ActionResult Index()
