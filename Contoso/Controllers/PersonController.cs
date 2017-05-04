@@ -3,16 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Contoso.Service;
+using Contoso.ViewModels;
+using Newtonsoft.Json;
 
 namespace Contoso.Controllers
 {
     public class PersonController : Controller
     {
-        // GET: Person
-        public ActionResult Index()
+        private readonly IPersonService _personService;
+
+        public PersonController(IPersonService personService)
+        {
+            _personService = personService;
+        }
+
+        // GET: Login
+        public ActionResult Login()
         {
             return View();
         }
+
+
+        [AllowAnonymous]
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Person", null);
+        }
+
 
         // GET: Person/Details/5
         public ActionResult Details(int id)
@@ -26,59 +46,43 @@ namespace Contoso.Controllers
             return View();
         }
 
-        // POST: Person/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Login(LoginViewModel loginViewModel)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    // var user = db.User.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
+                    var person = _personService.GetPersonByUserName(loginViewModel.Username);
+                    if (person != null)
+                    {
+                        var personRoles = person.Roles.Select(r => r.RoleName).ToArray();
+                        var serializeModel = new ContosoPrincipleModel()
+                        {
+                            PersonId = person.Id,
+                            FirstName = person.FirstName,
+                            LastName = person.LastName,
+                            Roles = personRoles
+                        };
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                        var userData = JsonConvert.SerializeObject(serializeModel);
+                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,
+                            DateTime.Now.AddMinutes(15), false, userData);
+                        var encTicket = FormsAuthentication.Encrypt(authTicket);
+                        var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                        Response.Cookies.Add(faCookie);
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Incorrect username and/or password");
+                }
+
                 return View();
-            }
-        }
-
-        // GET: Person/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Person/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Person/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Person/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
             }
             catch
             {

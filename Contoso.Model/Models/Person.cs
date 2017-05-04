@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Contoso.Model.Common;
+using Contoso.Model.Models;
 
 namespace Contoso.Model
 {
@@ -96,5 +98,7 @@ namespace Contoso.Model
 
         [ScaffoldColumn(false)]
         public string Salt { get; set; }
+
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }
