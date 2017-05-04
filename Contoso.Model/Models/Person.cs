@@ -99,6 +99,16 @@ namespace Contoso.Model
         [ScaffoldColumn(false)]
         public string Salt { get; set; }
 
+        [ScaffoldColumn(false)]
+        public bool IsLocked { get; set; }
+
+        [ScaffoldColumn(false)]
+        public DateTime? LastLockedDateTime { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int? FailedAttempts { get; set; }
+
+
         public virtual ICollection<Role> Roles { get; set; }
     }
 }

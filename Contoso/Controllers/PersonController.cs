@@ -66,8 +66,7 @@ namespace Contoso.Controllers
                         };
 
                         var userData = JsonConvert.SerializeObject(serializeModel);
-                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,
-                            DateTime.Now.AddMinutes(15), false, userData);
+                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,DateTime.Now.AddMinutes(15), false, userData);
                         var encTicket = FormsAuthentication.Encrypt(authTicket);
                         var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
