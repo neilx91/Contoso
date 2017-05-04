@@ -51,11 +51,9 @@ namespace Contoso.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    // var user = db.User.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
-                    var person = _personService.GetPersonByUserName(loginViewModel.Username);
+                    var person = _personService.GetValidPerson(loginViewModel.Username, loginViewModel.Password);
                     if (person != null)
                     {
                         var personRoles = person.Roles.Select(r => r.RoleName).ToArray();

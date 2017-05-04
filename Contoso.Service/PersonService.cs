@@ -22,10 +22,17 @@ namespace Contoso.Service
             var person = _personRepository.Get(p => p.Email == username);
             return person;
         }
+
+        public Person GetValidPerson(string username, string password)
+        {
+            var person = _personRepository.Get(p => p.Email == username && p.Password == password);
+            return person;
+        }
     }
 
     public interface IPersonService
     {
         Person GetPersonByUserName(string username);
+        Person GetValidPerson(string username, string password);
     }
 }
