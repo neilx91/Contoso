@@ -223,6 +223,7 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Person\Register.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Person\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
