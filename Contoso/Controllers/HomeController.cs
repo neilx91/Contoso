@@ -12,7 +12,7 @@ namespace Contoso.Controllers
     {
         public ActionResult Index()
         {
-            throw new DivideByZeroException();
+            //throw new DivideByZeroException();
 
             return View();
         }

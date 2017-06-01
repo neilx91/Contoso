@@ -49,10 +49,11 @@ namespace Contoso.Filters
                 TempData = filterContext.Controller.TempData
             };
 
+            var dateExceptionHappened = DateTime.Now;
             //set breakpoing on the following line to see what the requested path and query is
             var pathAndQuery = filterContext.HttpContext.Request.Path + filterContext.HttpContext.Request.QueryString;
 
-            throw new FileNotFoundException();
+          // throw new FileNotFoundException();
             // log the error using log4net.
 
             filterContext.ExceptionHandled = true;
