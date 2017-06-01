@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.IO;
 using System.Web.Mvc;
 using log4net;
 
 namespace Contoso.Filters
 {
-
     /* The HandleError filter handles the exceptions that are raised by the controller actions, filters and views,
         it returns a custom view named Error which is placed in the Shared folder. 
         The HandleError filter works only if the <customErrors> section is turned on in web.config
@@ -28,7 +25,7 @@ namespace Contoso.Filters
 
     // Extending HandleError
 
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ContosoExceptionFilter : HandleErrorAttribute
     {
         private readonly ILog _logger;
@@ -40,8 +37,8 @@ namespace Contoso.Filters
 
         public override void OnException(ExceptionContext filterContext)
         {
-            var controllerName = (string)filterContext.RouteData.Values["controller"];
-            var actionName = (string)filterContext.RouteData.Values["action"];
+            var controllerName = (string) filterContext.RouteData.Values["controller"];
+            var actionName = (string) filterContext.RouteData.Values["action"];
             var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
 
             filterContext.Result = new ViewResult
@@ -53,9 +50,9 @@ namespace Contoso.Filters
             };
 
             //set breakpoing on the following line to see what the requested path and query is
-            string pathAndQuery = filterContext.HttpContext.Request.Path + filterContext.HttpContext.Request.QueryString;
+            var pathAndQuery = filterContext.HttpContext.Request.Path + filterContext.HttpContext.Request.QueryString;
 
-
+            throw new FileNotFoundException();
             // log the error using log4net.
 
             filterContext.ExceptionHandled = true;
@@ -64,7 +61,6 @@ namespace Contoso.Filters
 
             filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
             base.OnException(filterContext);
-
         }
     }
 }
