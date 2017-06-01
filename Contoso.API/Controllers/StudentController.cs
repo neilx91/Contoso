@@ -13,7 +13,7 @@ using Contoso.Service;
 namespace Contoso.API.Controllers
 {
     [RoutePrefix("api/Students")]
-    [BasicAuthenticationFilter]
+   // [BasicAuthenticationFilter]
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
@@ -48,8 +48,12 @@ namespace Contoso.API.Controllers
         }
 
         // GET: api/Student/5
+        [ContosoApiException]
+        [Route("{id}")]
+
         public string Get(int id)
         {
+            throw new NotImplementedException();
             return "value";
         }
 

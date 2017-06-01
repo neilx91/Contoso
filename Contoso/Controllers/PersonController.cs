@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,7 +57,7 @@ namespace Contoso.Controllers
                     if (person != null)
                     {
                         var personRoles = person.Roles.Select(r => r.RoleName).ToArray();
-                        var serializeModel = new ContosoPrincipleModel()
+                        var serializeModel = new ContosoPrincipleModel
                         {
                             PersonId = person.Id,
                             FirstName = person.FirstName,
@@ -67,7 +66,8 @@ namespace Contoso.Controllers
                         };
 
                         var userData = JsonConvert.SerializeObject(serializeModel);
-                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,DateTime.Now.AddMinutes(15), false, userData);
+                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,
+                            DateTime.Now.AddMinutes(15), false, userData);
                         var encTicket = FormsAuthentication.Encrypt(authTicket);
                         var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
