@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using Contoso.API.Infrastructure;
 
 namespace Contoso.API
@@ -13,13 +11,18 @@ namespace Contoso.API
             // Web API configuration and services
             config.Filters.Add(new ContosoApiException());
 
+            //The handler, like the logger, must be registered in the Web API configuration. 
+            //Note that we can only have one Exception Handler per application.
+            config.Services.Replace(typeof(IExceptionHandler), new ContosoApiExceptionHandler());
+
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                "DefaultApi",
+                "api/{controller}/{id}",
+                new {id = RouteParameter.Optional}
             );
         }
     }

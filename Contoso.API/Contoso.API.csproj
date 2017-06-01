@@ -128,6 +128,7 @@
     <Compile Include="Infrastructure\BasicAuthenticationHandler.cs" />
     <Compile Include="Infrastructure\BasicAuthenticationIdentity.cs" />
     <Compile Include="Infrastructure\ContosoApiException.cs" />
+    <Compile Include="Infrastructure\ContosoApiExceptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
