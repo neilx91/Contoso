@@ -21,6 +21,7 @@ namespace InterviewQuestionBank.Data
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         public override int SaveChanges()
         {
@@ -57,6 +58,5 @@ namespace InterviewQuestionBank.Data
             return base.SaveChanges();
         }
 
-        public System.Data.Entity.DbSet<Contoso.Model.Student> Students { get; set; }
     }
 }
