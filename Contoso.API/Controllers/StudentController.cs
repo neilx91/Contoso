@@ -13,7 +13,7 @@ using Contoso.Service;
 namespace Contoso.API.Controllers
 {
     [RoutePrefix("api/Students")]
-   // [BasicAuthenticationFilter]
+     [BasicAuthenticationFilter]
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
