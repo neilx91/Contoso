@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 namespace Contoso.Controllers
 {
     public class PersonController : Controller
-
     {
         private readonly IPersonService _personService;
 
