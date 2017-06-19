@@ -5,7 +5,7 @@ using System.Threading;
 using Contoso.Model;
 using Contoso.Model.Common;
 
-namespace InterviewQuestionBank.Data
+namespace Contoso.Data
 {
     public class ContosoDbContext : DbContext
     {

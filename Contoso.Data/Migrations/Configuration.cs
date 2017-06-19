@@ -5,14 +5,14 @@ namespace Contoso.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<InterviewQuestionBank.Data.ContosoDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ContosoDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(InterviewQuestionBank.Data.ContosoDbContext context)
+        protected override void Seed(ContosoDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

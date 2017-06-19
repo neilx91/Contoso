@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Contoso.Model.Common;
 
-namespace InterviewQuestionBank.Data
+namespace Contoso.Data
 {
     public interface IRepository<T> where T : class
     {

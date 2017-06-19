@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Contoso.Model.Common;
 
-namespace InterviewQuestionBank.Data
+namespace Contoso.Data
 {
     public abstract class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
