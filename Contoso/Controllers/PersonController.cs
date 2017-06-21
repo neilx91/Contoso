@@ -45,6 +45,16 @@ namespace Contoso.Controllers
             return View();
         }
 
+        // GET: Person/Create
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+            }
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
