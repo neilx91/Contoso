@@ -52,13 +52,23 @@ namespace Contoso.Controllers
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
+                    Student student = new Student()
+                    {
+                        Email = model.Username,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Password = model.Password,
+                        EnrollmentDate = DateTime.Now
+                    };
+                    
+                    _studentService.CreateStudent(student);
                 }
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 

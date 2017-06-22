@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Transactions;
 using Contoso.Data.Repositories;
 using Contoso.Model;
 using Contoso.Model.Common;
@@ -10,12 +11,13 @@ namespace Contoso.Service
 {
     public class StudentService : IStudentService
     {
-
+        private readonly IPersonRepository _personRepository;
         private readonly IStudentRepository _studentRepository;
 
-        public StudentService(IStudentRepository studentRepository)
+        public StudentService(IPersonRepository personRepository, IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
+            _personRepository = personRepository;
         }
 
         public IEnumerable<Student> GetAllStudents(int? page, int pageSize, out int totalCount)
@@ -42,7 +44,14 @@ namespace Contoso.Service
 
         public void CreateStudent(Student student)
         {
-            throw new NotImplementedException();
+            using (var transaction = new TransactionScope())
+            {
+                _personRepository.Add(student);
+                _personRepository.SaveChanges();
+                transaction.Complete();
+            }
+           
+            
         }
 
         public void UpdateStudent(Student student)
