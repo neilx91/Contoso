@@ -37,7 +37,7 @@ namespace Contoso.Service
 
         public void CreateInstructor(Instructor instructor)
         {
-            throw new NotImplementedException();
+            _instructorRepository.Add(instructor);
         }
 
         public void UpdateInstructor(Instructor instructor)

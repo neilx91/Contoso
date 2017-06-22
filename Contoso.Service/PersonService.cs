@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Contoso.Data.Repositories;
 using Contoso.Model;
 
@@ -29,11 +26,18 @@ namespace Contoso.Service
             return person;
         }
 
+        public void AddPerson(Person person, string roles)
+        {
+            _personRepository.Add(person);
+            
+        }
     }
 
     public interface IPersonService
     {
         Person GetPersonByUserName(string username);
         Person GetValidPerson(string username, string password);
+        void AddPerson(Person person, string roles);
+        List<Person> GetPersonsByRole(int roleId);
     }
 }

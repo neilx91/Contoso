@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Contoso.Model;
 using Contoso.Service;
+using Contoso.ViewModels;
 using PagedList;
 
 namespace Contoso.Controllers
@@ -44,11 +45,14 @@ namespace Contoso.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(RegisterViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    // TODO: Add insert logic here
+                }
 
                 return RedirectToAction("Index");
             }
