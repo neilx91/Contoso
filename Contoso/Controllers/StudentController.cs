@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Contoso.Infrastructure;
 using Contoso.Model;
 using Contoso.Service;
 using Contoso.ViewModels;
@@ -10,6 +11,7 @@ using PagedList;
 
 namespace Contoso.Controllers
 {
+  [ContosoAuthorize(Roles = "Student")]
     public class StudentController : BaseController
     {
         private readonly IStudentService _studentService;

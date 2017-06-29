@@ -64,6 +64,12 @@ namespace Contoso.Controllers
                 if (ModelState.IsValid)
                 {
                     var person = _personService.GetValidPerson(loginViewModel.Username, loginViewModel.Password);
+
+                    //person.Id = 6;
+                    //person.FirstName = "Tony";
+                    //person.LastName = "Stark";
+
+
                     if (person != null)
                     {
                         var personRoles = person.Roles.Select(r => r.RoleName).ToArray();

@@ -50,8 +50,6 @@ namespace Contoso.Service
                 _personRepository.SaveChanges();
                 transaction.Complete();
             }
-           
-            
         }
 
         public void UpdateStudent(Student student)

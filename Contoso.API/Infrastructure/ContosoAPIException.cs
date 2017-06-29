@@ -16,7 +16,17 @@ namespace Contoso.API.Infrastructure
                     Content = new StringContent(actionExecutedContext.Exception.Message),
                     ReasonPhrase = "Method is Not Implement, Will implement in later version"
                 };
+            else if (actionExecutedContext.Exception is ArgumentNullException)
+            {
+                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(actionExecutedContext.Exception.Message),
+                    ReasonPhrase = "Please check your request "
+                };
+            }
+          
 
         }
+       
     }
 }
