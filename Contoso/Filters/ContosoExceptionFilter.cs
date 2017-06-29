@@ -49,7 +49,7 @@ namespace Contoso.Filters
                 TempData = filterContext.Controller.TempData
             };
 
-            var dateExceptionHappened = DateTime.Now;
+            var dateExceptionHappened = DateTime.Now.TimeOfDay.ToString();
             //set breakpoing on the following line to see what the requested path and query is
             var pathAndQuery = filterContext.HttpContext.Request.Path + filterContext.HttpContext.Request.QueryString;
 

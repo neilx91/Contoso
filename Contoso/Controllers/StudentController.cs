@@ -11,7 +11,7 @@ using PagedList;
 
 namespace Contoso.Controllers
 {
-  [ContosoAuthorize(Roles = "Student")]
+ // [ContosoAuthorize(Roles = "Student")]
     public class StudentController : BaseController
     {
         private readonly IStudentService _studentService;

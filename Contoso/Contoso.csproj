@@ -231,6 +231,8 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\Person\Login.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Home\ErrorHappened.cshtml" />
+    <Content Include="Views\Shared\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

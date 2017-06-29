@@ -74,7 +74,7 @@ namespace Contoso
             Server.ClearError();
 
             // Redirect to a landing page
-            //  Response.Redirect("Error.cshtml");
+              Response.Redirect("/Error/ErrorPage");
           //  HttpContext.Current.Response.RedirectToRoute("RouteError", new { Id = 404 });
 
         }

@@ -13,5 +13,10 @@ namespace Contoso.Controllers
         {
             return View();
         }
+        // GET: Error
+        public ActionResult ErrorPage()
+        {
+            return View("ErrorPage");
+        }
     }
 }
