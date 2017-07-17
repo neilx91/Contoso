@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Contoso.Infrastructure;
 using Contoso.Model;
 using Contoso.Service;
 using Contoso.ViewModels;
@@ -11,7 +7,7 @@ using PagedList;
 
 namespace Contoso.Controllers
 {
- // [ContosoAuthorize(Roles = "Student")]
+    // [ContosoAuthorize(Roles = "Student")]
     public class StudentController : BaseController
     {
         private readonly IStudentService _studentService;
@@ -24,9 +20,9 @@ namespace Contoso.Controllers
         // GET: Student
         public ActionResult Index(int? page)
         {
-            int pageNumber = (page ?? 1) - 1;
-            int totalCount = 0;
-            int PageSize = 10;
+            var pageNumber = (page ?? 1) - 1;
+            var totalCount = 0;
+            var PageSize = 10;
             var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
             var studentsAsIPagedList = new StaticPagedList<Student>(students, pageNumber + 1, PageSize, totalCount);
 
@@ -54,7 +50,7 @@ namespace Contoso.Controllers
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
-                    Student student = new Student()
+                    var student = new Student
                     {
                         Email = model.Username,
                         FirstName = model.FirstName,
@@ -62,7 +58,7 @@ namespace Contoso.Controllers
                         Password = model.Password,
                         EnrollmentDate = DateTime.Now
                     };
-                    
+
                     _studentService.CreateStudent(student);
                 }
 
@@ -87,7 +83,6 @@ namespace Contoso.Controllers
             try
             {
                 // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch

@@ -16,5 +16,6 @@ namespace Contoso.Controllers
         {
             get { return HttpContext.User as ContosoPrincipal; }
         }
+
     }
 }

@@ -11,6 +11,11 @@ namespace Contoso.Controllers
 {
     public class PersonController : Controller
     {
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
+
         private readonly IPersonService _personService;
 
         public PersonController(IPersonService personService)

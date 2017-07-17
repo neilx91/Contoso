@@ -55,6 +55,7 @@ namespace Contoso.Filters
 
           // throw new FileNotFoundException();
             // log the error using log4net.
+           
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();
