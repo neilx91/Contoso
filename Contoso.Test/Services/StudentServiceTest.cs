@@ -19,7 +19,10 @@ namespace Contoso.Test.Services
         [TestMethod]
         public void Check_StudentsCountFromTheFakeData()
         {
-            _mockStudentRepository.Setup(s => s.GetAll()).Returns(students);
+            int totalCount=0;
+            var students = _studentService.GetAllStudents(1, 10, out totalCount);
+            Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
+            Assert.IsNotNull(students);
         }
 
         [TestMethod]
@@ -27,7 +30,7 @@ namespace Contoso.Test.Services
         {
             var student = _studentService.GetStudentById(2);
             Assert.IsNotNull(student); // Test if student is null or not
-            Assert.IsInstanceOfType(student, typeof(Student));
+            Assert.IsInstanceOfType(student, typeof(Student)); //  Test if type returned is Student
             Assert.AreEqual("Test LastName2", student.LastName);
         }
 
@@ -114,6 +117,8 @@ namespace Contoso.Test.Services
                     Email = "test@test.com"
                 }
             };
+
+            _mockStudentRepository.Setup(s => s.GetAll()).Returns(students);
 
             _mockStudentRepository.Setup(s => s.GetById(It.IsAny<int>()))
                 .Returns((int s) => students.First(x => x.Id == s));
