@@ -11,16 +11,16 @@ namespace Contoso.Controllers
 {
     public class PersonController : Controller
     {
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            base.OnException(filterContext);
-        }
-
         private readonly IPersonService _personService;
 
         public PersonController(IPersonService personService)
         {
             _personService = personService;
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
         }
 
         // GET: Login
@@ -56,7 +56,6 @@ namespace Contoso.Controllers
         {
             if (ModelState.IsValid)
             {
-                
             }
             return View();
         }
