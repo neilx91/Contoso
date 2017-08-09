@@ -56,7 +56,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FullNameCompare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PersonServiceTest.cs" />
     <Compile Include="Services\StudentServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

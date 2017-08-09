@@ -34,6 +34,7 @@ namespace Contoso.Service
 
         public IEnumerable<Student> GetStudentByName(string name)
         {
+            
             return _studentRepository.GetMany(s => s.LastName.Contains(name) || s.FirstName.Contains(name)).ToList();
         }
 
