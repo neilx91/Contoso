@@ -12,6 +12,7 @@ namespace Contoso.Data
         public ContosoDbContext() : base("Name=ContosoDbContext")
         {
            // this.Configuration.LazyLoadingEnabled = false;
+           //rtyu
         }
 
         //public DbSet<Student> Students { get; set; }
